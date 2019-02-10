@@ -13,9 +13,20 @@ describe('MailboxEntry', () => {
     expect(entry.state('hasBeenRead')).toBe(false);
   });
 
-  it('renders unread messages as highlighted', () => {});
+  it('renders unread messages as highlighted', () => {
+    entry.setState({ hasBeenRead: false });
+    expect(entry.prop('data-highlighted')).toBe(true);
+  });
 
-  it('renders read messages as unhighlighted, when it was clicked', () => {});
+  it('renders read messages as unhighlighted, when it was clicked', () => {
+    entry.setState({ hasBeenRead: false });
+    entry.simulate('click');
+    expect(entry.state('hasBeenRead')).toBe(true);
+    expect(entry.prop('data-highlighted')).toBe(false);
+  });
 
-  it('removes entry, when clickOn x-character', () => {});
+  it('removes entry, when clickOn x-character', () => {
+    entry.find('i').simulate('click');
+    expect(entry.state('render')).toBe(false);
+  });
 });
