@@ -3,10 +3,28 @@ import { shallow } from 'enzyme';
 import MailboxEntry from '../MailboxEntry';
 
 describe('MailboxEntry', () => {
-  const entry = shallow(<MailboxEntry />);
+  const entry = shallow(
+    <MailboxEntry
+      sender="Ernest Hemingway"
+      subject="animals"
+      time_sent={1459239867}
+    />
+  );
 
   it('renders a <tr>', () => {
     expect(entry.type()).toBe('tr');
+  });
+
+  it('should display sender, subject and time_sent', () => {
+    expect(entry.childAt(0).text()).toContain('Ernest Hemingway');
+    expect(entry.childAt(1).text()).toContain('animals');
+    expect(entry.find('span').text()).toContain('1459239867');
+  });
+
+  describe('time_send', () => {
+    it('should be presented in the form "Mon 06 July, 10:53", in local time', () => {
+      // TODO: format time_send
+    });
   });
 
   it('has an  initial `has been read` state of false', () => {

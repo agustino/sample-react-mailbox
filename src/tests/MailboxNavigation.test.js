@@ -6,24 +6,26 @@ describe('MailboxNavigation', () => {
   let nav;
 
   beforeEach(() => {
-    nav = shallow(<MailboxNavigation />);
+    nav = shallow(
+      <MailboxNavigation
+        sender="Ernest Hemingway"
+        subject="animals"
+        time_sent={1459239867}
+      />
+    );
   });
 
   it('renders a <nav>', () => {
     expect(nav.type()).toBe('nav');
   });
 
-  it('should be on the left', () => {});
-
-  it('should list all provided messages', () => {});
-
-  it('should display the following fields', () => {
-    // sender (String)
-    // subject (String)
-    // time_sent (Number)
+  it('should be on the left', () => {
+    // NOTE: Probably not worth a test, but kept as a reminder.
   });
 
-  describe('time_send', () => {
-    it('should be presented in the form "Mon 06 July, 10:53", in local time', () => {});
+  it('should list all provided messages', () => {
+    const messages = nav.props.messages;
+    const MailboxEntries = nav.find('MailboxEntries');
+    expect(MailboxEntries.prop('messages')).toBe(messages);
   });
 });
