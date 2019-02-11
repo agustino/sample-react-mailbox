@@ -44,7 +44,7 @@ class MailboxEntry extends React.PureComponent {
         <td>{this.props.subject}</td>
         <td>
           {this.timeSend(this.props.time_sent)}
-          <i onClick={this.handleDeleteClick}>×</i>
+          <button onClick={this.handleDeleteClick}>×</button>
         </td>
       </tr>
     );

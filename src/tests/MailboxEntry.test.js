@@ -43,7 +43,7 @@ describe('MailboxEntry', () => {
   });
 
   it('removes entry, when clickOn x-character', () => {
-    entry.find('i').simulate('click');
+    entry.find('button').simulate('click');
     expect(entry.state('render')).toBe(false);
   });
 });
