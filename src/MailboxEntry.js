@@ -11,14 +11,15 @@ class MailboxEntry extends React.PureComponent {
 
   state = {
     hasBeenRead: false,
+    showComponent: true,
   };
 
   handleHasBeenReadClick = () => {
-    this.setState(() => ({ hasBeenRead: true }));
+    this.setState({ hasBeenRead: true });
   };
 
   handleDeleteClick = () => {
-    this.setState(() => ({ render: false }));
+    this.setState({ showComponent: false });
   };
 
   timeSend = timestamp => {
@@ -40,12 +41,16 @@ class MailboxEntry extends React.PureComponent {
         data-highlighted={!this.state.hasBeenRead}
         onClick={this.handleHasBeenReadClick}
       >
-        <td>{this.props.sender}</td>
-        <td>{this.props.subject}</td>
-        <td>
-          {this.timeSend(this.props.time_sent)}
-          <button onClick={this.handleDeleteClick}>×</button>
-        </td>
+        {this.state.showComponent && (
+          <React.Fragment>
+            <td>{this.props.sender}</td>
+            <td>{this.props.subject}</td>
+            <td>
+              {this.timeSend(this.props.time_sent)}
+              <button onClick={this.handleDeleteClick.bind(this)}>×</button>
+            </td>
+          </React.Fragment>
+        )}
       </tr>
     );
   }
