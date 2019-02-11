@@ -2,6 +2,8 @@ import React from 'react';
 import MailboxNavigation from './MailboxNavigation';
 import MailboxContent from './MailboxContent';
 
+import './Mailbox.sass';
+
 class Mailbox extends React.PureComponent {
   constructor(props) {
     super(props);

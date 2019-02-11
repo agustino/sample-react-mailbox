@@ -19,6 +19,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: require.resolve('babel-loader'),
       },
+      {
+        test: /\.sass$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
 };

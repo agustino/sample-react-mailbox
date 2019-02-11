@@ -5,7 +5,7 @@ import MailboxContent from '../MailboxContent';
 describe('MailboxContent', () => {
   const entry = shallow(<MailboxContent />);
 
-  it('renders a <div>', () => {
-    expect(entry.type()).toBe('div');
+  it('renders a <main>', () => {
+    expect(entry.type()).toBe('main');
   });
 });

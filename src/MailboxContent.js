@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MailboxContent = ({ message }) => (
-  <div>
+  <main>
+    <h2>Mail</h2>
     <p>{message}</p>
-  </div>
+  </main>
 );
 
 MailboxContent.propTypes = {
