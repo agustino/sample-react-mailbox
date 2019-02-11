@@ -7,15 +7,12 @@ class MailboxEntry extends React.PureComponent {
     sender: PropTypes.string.isRequired,
     subject: PropTypes.string,
     time_sent: PropTypes.number.isRequired,
+    handleMessage: PropTypes.func,
   };
 
   state = {
     hasBeenRead: false,
     showComponent: true,
-  };
-
-  handleHasBeenReadClick = () => {
-    this.setState({ hasBeenRead: true });
   };
 
   handleDeleteClick = () => {
@@ -34,12 +31,18 @@ class MailboxEntry extends React.PureComponent {
     return <span>{date.toLocaleString('de-DE', options)}</span>;
   };
 
+  handleSelectMessage = () => {
+    var i = this.props.uid;
+    this.props.handleMessage(i);
+    this.setState({ hasBeenRead: true });
+  };
+
   render() {
     return (
       <tr
-        key={this.props.uid}
+        uid={this.props.uid}
         data-highlighted={!this.state.hasBeenRead}
-        onClick={this.handleHasBeenReadClick}
+        onClick={this.handleSelectMessage}
       >
         {this.state.showComponent && (
           <React.Fragment>

@@ -1,18 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MailboxNavigation from './MailboxNavigation';
-import MailboxEntry from './MailboxEntry';
 import MailboxContent from './MailboxContent';
 
 class Mailbox extends React.PureComponent {
-  static propTypes = {
-    messages: PropTypes.arrayOf(
-      PropTypes.shape(MailboxEntry.propTypes).isRequired
-    ),
-  };
+  constructor(props) {
+    super(props);
 
-  state = {
-    messageIndex: 0,
+    this.handleMessage = this.handleMessage.bind(this);
+
+    this.state = {
+      messageIndex: 0,
+    };
+  }
+
+  handleMessage = i => {
+    var index = this.props.messages
+      .map(function(d) {
+        return d['uid'];
+      })
+      .indexOf(i);
+
+    this.setState({
+      messageIndex: index,
+    });
   };
 
   render() {
@@ -21,7 +31,10 @@ class Mailbox extends React.PureComponent {
     return (
       <div {...rest}>
         <h1>Mailbox</h1>
-        <MailboxNavigation messages={messages} />
+        <MailboxNavigation
+          messages={messages}
+          handleMessage={this.handleMessage}
+        />
         <MailboxContent {...messages[this.state.messageIndex]} />
       </div>
     );

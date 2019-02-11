@@ -6,15 +6,17 @@ function MailboxEntries(props) {
   const mailboxEntries = props.messages.map(message => (
     <MailboxEntry
       key={message.uid}
+      uid={message.uid}
       sender={message.sender}
       subject={message.subject}
       time_sent={message.time_sent}
+      handleMessage={props.handleMessage}
     />
   ));
   return <tbody>{mailboxEntries}</tbody>;
 }
 
-const MailboxNavigation = ({ messages }) => {
+const MailboxNavigation = ({ messages, handleMessage }) => {
   return (
     <nav>
       <h2>Inbox</h2>
@@ -26,7 +28,7 @@ const MailboxNavigation = ({ messages }) => {
             <th>Time Sent</th>
           </tr>
         </thead>
-        <MailboxEntries messages={messages} />
+        <MailboxEntries messages={messages} handleMessage={handleMessage} />
       </table>
     </nav>
   );
