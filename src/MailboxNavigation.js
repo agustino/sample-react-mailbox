@@ -16,6 +16,12 @@ function MailboxEntries(props) {
   return <tbody>{mailboxEntries}</tbody>;
 }
 
+MailboxEntries.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.shape(MailboxEntry.propTypes))
+    .isRequired,
+  handleMessage: PropTypes.func,
+};
+
 const MailboxNavigation = ({ messages, handleMessage }) => {
   return (
     <nav>
@@ -37,6 +43,7 @@ const MailboxNavigation = ({ messages, handleMessage }) => {
 MailboxNavigation.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.shape(MailboxEntry.propTypes))
     .isRequired,
+  handleMessage: PropTypes.func,
 };
 
 export default MailboxNavigation;
