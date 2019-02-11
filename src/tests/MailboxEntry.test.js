@@ -15,15 +15,14 @@ describe('MailboxEntry', () => {
     expect(entry.type()).toBe('tr');
   });
 
-  it('should display sender, subject and time_sent', () => {
+  it('should display sender, subject', () => {
     expect(entry.childAt(0).text()).toContain('Ernest Hemingway');
     expect(entry.childAt(1).text()).toContain('animals');
-    expect(entry.find('span').text()).toContain('1459239867');
   });
 
   describe('time_send', () => {
     it('should be presented in the form "Mon 06 July, 10:53", in local time', () => {
-      // TODO: format time_send
+      expect(entry.find('span').text()).toBe('Sa., 17. Januar, 22:20');
     });
   });
 

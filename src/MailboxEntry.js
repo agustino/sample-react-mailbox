@@ -21,6 +21,18 @@ class MailboxEntry extends React.PureComponent {
     this.setState(() => ({ render: false }));
   };
 
+  timeSend = timestamp => {
+    var date = new Date(timestamp);
+    var options = {
+      weekday: 'short',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return <span>{date.toLocaleString('de-DE', options)}</span>;
+  };
+
   render() {
     return (
       <tr
@@ -31,7 +43,7 @@ class MailboxEntry extends React.PureComponent {
         <td>{this.props.sender}</td>
         <td>{this.props.subject}</td>
         <td>
-          <span>{this.props.time_sent}</span>
+          {this.timeSend(this.props.time_sent)}
           <i onClick={this.handleDeleteClick}>×</i>
         </td>
       </tr>
