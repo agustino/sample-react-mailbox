@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const MailboxContent = ({ message }) => (
   <main>
     <h2>Mail</h2>
-    <p>{message}</p>
+    <p>{message || 'There are no messages'}</p>
   </main>
 );
 

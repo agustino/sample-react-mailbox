@@ -12,11 +12,12 @@ class Mailbox extends React.PureComponent {
 
     this.state = {
       messageIndex: 0,
+      messages: this.props.messages,
     };
   }
 
   handleMessage = i => {
-    var index = this.props.messages
+    var index = this.state.messages
       .map(function(d) {
         return d['uid'];
       })
@@ -27,17 +28,24 @@ class Mailbox extends React.PureComponent {
     });
   };
 
+  handleMessageDelete = i => {
+    this.setState({
+      messages: this.state.messages.filter(word => word.uid != i),
+    });
+  };
+
   render() {
-    const { messages, ...rest } = this.props;
+    const { ...rest } = this.props;
 
     return (
       <div {...rest}>
         <h1>Mailbox</h1>
         <MailboxNavigation
-          messages={messages}
+          messages={this.state.messages}
           handleMessage={this.handleMessage}
+          handleMessageDelete={this.handleMessageDelete}
         />
-        <MailboxContent {...messages[this.state.messageIndex]} />
+        <MailboxContent {...this.state.messages[this.state.messageIndex]} />
       </div>
     );
   }

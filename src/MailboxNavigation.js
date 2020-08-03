@@ -11,6 +11,8 @@ function MailboxEntries(props) {
       subject={message.subject}
       time_sent={message.time_sent}
       handleMessage={props.handleMessage}
+      handleMessageDelete={props.handleMessageDelete}
+      messages={props.messages}
     />
   ));
   return <tbody>{mailboxEntries}</tbody>;
@@ -22,7 +24,11 @@ MailboxEntries.propTypes = {
   handleMessage: PropTypes.func,
 };
 
-const MailboxNavigation = ({ messages, handleMessage }) => {
+const MailboxNavigation = ({
+  messages,
+  handleMessage,
+  handleMessageDelete,
+}) => {
   return (
     <nav>
       <h2>Inbox</h2>
@@ -34,7 +40,11 @@ const MailboxNavigation = ({ messages, handleMessage }) => {
             <th>Time Sent</th>
           </tr>
         </thead>
-        <MailboxEntries messages={messages} handleMessage={handleMessage} />
+        <MailboxEntries
+          messages={messages}
+          handleMessage={handleMessage}
+          handleMessageDelete={handleMessageDelete}
+        />
       </table>
     </nav>
   );
