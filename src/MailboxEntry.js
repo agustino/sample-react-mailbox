@@ -16,7 +16,16 @@ class MailboxEntry extends React.PureComponent {
   };
 
   handleDeleteClick = () => {
-    this.setState({ showComponent: false });
+    // this.setState({ showComponent: false });
+    var i = this.props.uid;
+
+    var index = this.props.messages
+      .map(function(i) {
+        return i['uid'];
+      })
+      .indexOf(i);
+
+    this.props.handleMessageDelete(i);
   };
 
   timeSend = timestamp => {
